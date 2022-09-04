@@ -81,8 +81,11 @@ WSGI_APPLICATION = 'melp_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2qdhm1ghc04je',
+        'HOST': 'ec2-23-23-182-238.compute-1.amazonaws.com',
+        'USER': 'ypxahhdecstuov',
+        'PASSWORD': 'e9e54b125d9de94de48c52520137fdc84ac6644c02412a67ac9fb5cc247ed7ac'
     }
 }
 

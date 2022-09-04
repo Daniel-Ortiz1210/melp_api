@@ -61,7 +61,8 @@ class StatisticsView(APIView):
         radius = request.query_params.get('radius')
         
         if None in [latitude, radius, longitude]:
-            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+            ret = {'missing_query_params': 'Missing latitude, longitude or radius param'}
+            return Response(ret, status=status.HTTP_406_NOT_ACCEPTABLE)
         
         cursor = connection.cursor()
         cursor.execute('SELECT COUNT(*) as total, AVG(rating) as rating, STDDEV(rating) as std_dev from api_restaurant as coor WHERE ST_Covers(ST_Buffer(ST_Point(%s, %s)::geography, %s), ST_Point(coor.lng, coor.lat)::geography);', [float(longitude), float(latitude), float(radius)])

@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-)^9#7cbmz+^)73mwbh6+3q@u8-erf0ao3=xx3p318e*3)79!zp')
-
+SECRET_KEY = 'django-insecure-)^9#7cbmz+^)73mwbh6+3q@u8-erf0ao3=xx3p318e*3)79!zp'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DJANGO_DEBUG', default=True, cast=bool)
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,8 +81,11 @@ WSGI_APPLICATION = 'melp_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2qdhm1ghc04je',
+        'HOST': 'ec2-23-23-182-238.compute-1.amazonaws.com',
+        'USER': 'ypxahhdecstuov',
+        'PASSWORD': 'e9e54b125d9de94de48c52520137fdc84ac6644c02412a67ac9fb5cc247ed7ac'
     }
 }
 
@@ -136,6 +138,3 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-if config('DJANGO_PRODUCTION_ENV', default=False, cast=bool):
-    from .settings_production import *
